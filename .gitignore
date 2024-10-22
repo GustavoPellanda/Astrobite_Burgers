@@ -1,0 +1,4 @@
+# Ignore cache and database files
+__pycache__/
+*.db
+.pytest_cache/
