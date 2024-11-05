@@ -72,3 +72,26 @@ def delete_burger(id):
     cursor.execute('DELETE FROM burgers WHERE id = ?', (id,))
     conn.commit()
     conn.close()
+
+def delete_all_burgers():
+    conn = sqlite3.connect(DB_NAME)
+    cursor = conn.cursor()
+    cursor.execute("DELETE FROM burgers")
+    cursor.execute("DELETE FROM sqlite_sequence WHERE name='burgers'")  # Reset the auto-increment counter
+    conn.commit()
+    conn.close()
+
+def update_burger_ids():
+    conn = sqlite3.connect(DB_NAME)
+    cursor = conn.cursor()
+
+    # Retrieve all current burgers
+    cursor.execute('SELECT id, name, price, ingredients FROM burgers')
+    burgers = cursor.fetchall()
+
+    # Update the IDs
+    for new_id, (old_id, name, price, ingredients) in enumerate(burgers, start=1):
+        cursor.execute('UPDATE burgers SET id = ? WHERE id = ?', (new_id, old_id))
+
+    conn.commit()
+    conn.close()
