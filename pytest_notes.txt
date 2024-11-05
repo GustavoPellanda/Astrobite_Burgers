@@ -1,0 +1,35 @@
+pytest
+
+diretorio tests
+
+criar um __init__ dentro da pasta tests
+
+rodar com pytest tests/
+
+import das funções do código que serão testadas
+
+
+começar as funções com test_nome_descritivo_do_teste
+
+
+given, when, then
+given an entry, when a certain action is taken, then <assert> that a certain thing will happen
+
+
+pytest test_nome.py -v para resultado detalhado dos testes
+
+AssertionError sempre significa que o erro foi no assert, não na estrutura do teste
+
+
+from pytest import mark
+utilizado para marcar testes
+exemplo: @mark.smoke (tag communmente utilizada para marcar os testes mais cruciais - where there is smoke, there is fire)
+pytest -m smoke -> para ver os resultados dessa marcação
+
+
+@mark.parametrize é utilizado para fazer uma lista de entradas a serem testadas
+a lista pode ser passada como parâmetro da função de teste e parâmetro da função sendo testada para que todos os valores sejam testados
+é possível também usar tuples para criar pares de (entrada, resultado esperado)
+
+
+@mark.xfail e @mark.skipif poder ser usados para testes que você espera que falhem em contextos específicos
