@@ -39,15 +39,14 @@ def insert_burger():
 
 @app.route('/newBurgers', methods=['POST'])  # (admin)
 def insert_burgers():
-    data = request.json  # Obtém os dados JSON da requisição
+    data = request.json
 
-    if isinstance(data, list):  # Verifica se os dados são uma lista
+    if isinstance(data, list):
         burgers_added = []
         for burger in data:
             name = burger.get('name')
             price = burger.get('price')
             ingredients = burger.get('ingredients')
-            # Insere cada hambúrguer no banco de dados
             database.insert_burger(name, price, ingredients)
             burgers_added.append({"name": name, "price": price, "ingredients": ingredients})
         
