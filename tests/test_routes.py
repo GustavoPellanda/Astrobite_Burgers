@@ -12,7 +12,7 @@ def client():
 def test_index_route(client):
     response = client.get('/')
     assert response.status_code == 200
-    assert b"Astrobite Burguers server up!" in response.data
+    assert b"Astrobite Burgers server up!" in response.data
 
 def test_get_all_burgers(client):
     response = client.get('/allBurgers')
