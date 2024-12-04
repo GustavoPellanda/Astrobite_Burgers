@@ -32,8 +32,15 @@ jobs:
     - name: Run Docker container
       run: |
         docker run -d -p 5000:5000 --name astrobite-burguers flask-server
-        # Wait for Flask to be ready (optional, if needed)
-        sleep 5  # Wait 5 seconds to ensure the server has started
+        # Wait for Flask to be ready
+        for i in {1..30}; do
+          if curl --silent --fail http://localhost:5000; then
+            echo "Flask is up!"
+            break
+          fi
+          echo "Waiting for Flask to start..."
+          sleep 5
+        done
 
     - name: Set up Python
       uses: actions/setup-python@v2
@@ -53,3 +60,7 @@ jobs:
       run: |
         docker stop astrobite-burguers
         docker rm astrobite-burguers
+
+    - name: View container logs
+      run: |
+        docker logs astrobite-burguers
