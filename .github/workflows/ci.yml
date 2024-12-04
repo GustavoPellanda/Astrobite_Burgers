@@ -22,7 +22,8 @@ jobs:
 
     - name: Stop any running containers on port 5000
       run: |
-        docker ps -q --filter "ancestor=flask-server" | xargs -r docker stop
+        docker ps -q --filter "publish=5000" | xargs -r docker stop
+        docker ps -a -q --filter "publish=5000" | xargs -r docker rm
 
     - name: Build Docker image
       run: |
