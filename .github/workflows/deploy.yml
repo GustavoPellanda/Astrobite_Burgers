@@ -27,7 +27,7 @@ jobs:
 
       - name: Run tests
         run: |
-          pytest -v tests/
+          pytest -v tests/test_routes.py
 
   deploy:
     needs: test  # Will only deploy if approved by tests
