@@ -1,4 +1,4 @@
-name: CI for Astrobite Burguers
+name: CI for Astrobite Burgers
 
 on: [push, pull_request]
 
