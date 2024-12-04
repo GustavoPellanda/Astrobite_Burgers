@@ -20,6 +20,10 @@ jobs:
     - name: Set up Docker
       uses: docker/setup-buildx-action@v2
 
+    - name: Stop any running containers on port 5000
+      run: |
+        docker ps -q --filter "ancestor=flask-server" | xargs -r docker stop
+
     - name: Build Docker image
       run: |
         docker build -t flask-server .
