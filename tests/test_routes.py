@@ -16,13 +16,6 @@ def test_index_route(client):
     assert response.status_code == 200
     assert b"Astrobite Burgers server up!" in response.data
 
-# Test to check if the all burgers route is working
-def test_get_all_burgers(client):
-    response = client.get('/allBurgers')
-    assert response.status_code == 200
-    data = json.loads(response.data)
-    assert isinstance(data, list)  # Checks if the response is a list
-
 # Test to check if the insert burger route is working
 def test_insert_burger(client):
     new_burger = {
@@ -34,6 +27,13 @@ def test_insert_burger(client):
     assert response.status_code == 200
     data = json.loads(response.data)
     assert data["message"] == "Burger added successfully"
+
+# Test to check if the all burgers route is working
+def test_get_all_burgers(client):
+    response = client.get('/allBurgers')
+    assert response.status_code == 200
+    data = json.loads(response.data)
+    assert isinstance(data, list)  # Checks if the response is a list
 
 # Test to check if the top burgers route is working
 def test_get_top_burgers(client):
@@ -95,4 +95,3 @@ def test_delete_burger(client):
     assert response.status_code == 200
     data = json.loads(response.data)
     assert data["message"] == "Burger deleted successfully"
-
