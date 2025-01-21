@@ -7,6 +7,4 @@ def create_app():
     app.register_blueprint(burger_routes.routes)
     return app
 
-if __name__ == '__main__':
-    app = create_app()
-    app.run()
+app = create_app()
